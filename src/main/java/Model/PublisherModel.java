@@ -10,19 +10,19 @@ import java.util.UUID;
 public class PublisherModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-    @Column
+    private int id;
+    @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "publisher")
-    private Set<BookModel> bookModel = new HashSet<>();
+    private Set<BookModel> books = new HashSet<>();
 
-    public UUID getId() {
+    public PublisherModel() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -32,11 +32,11 @@ public class PublisherModel {
         this.name = name;
     }
 
-    public Set<BookModel> getBookModel() {
-        return bookModel;
+    public Set<BookModel> getBooks() {
+        return books;
     }
 
-    public void setBookModel(Set<BookModel> bookModel) {
-        this.bookModel = bookModel;
+    public void setBooks(Set<BookModel> bookModel) {
+        this.books = bookModel;
     }
 }

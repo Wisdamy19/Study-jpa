@@ -10,19 +10,26 @@ import java.util.UUID;
 public class AuthorModel {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private UUID id;
-    @Column
+    private int id;
+    @Column(name = "name")
     private String name;
+    @ManyToMany(mappedBy = "authors")
+    private Set<BookModel> books = new HashSet<>();
 
+    public AuthorModel() {
+    }
 
-    public UUID getId() {
+    public AuthorModel(int id, String name, Set<BookModel> books) {
+        this.id = id;
+        this.name = name;
+        this.books = books;
+    }
+
+    public int getId() {
         return id;
     }
 
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
